@@ -1,25 +1,46 @@
-## Panoramical MIDI Controller ##
-![](https://farm9.staticflickr.com/8250/8574227480_e86c8dde79_c.jpg)
-*Game Description*:
-Panoramical is a digital album of musical landscapes created by Fernando Ramallo and David Kanaga.
+#Panoramical MIDI Controller
 
-*Controller Description*: The controller consists of eighteen rotary potentiometers sending MIDI data via a microcontroller.
+**NOTE: At this time, this project is still a work-in-progress.**
 
-This repo contains information on code used in the implementation of Arduino and Teensy based versions as well as the laser cutter files used to create the enclosure.
+##Overview
 
-- Panoramical Website: [http://www.panoramic.al/](http://www.panoramic.al/)
-- Build Photos: [http://tiny.cc/musydx](https://www.flickr.com/photos/52082118@N05/sets/72157642614504393/)
-- Demonstration Video: [http://youtu.be/wzxf_goeosk](http://youtu.be/wzxf_goeosk)
+This project is a fork of a project by the same name at <https://github.com/brendan-byrne/Panoramical-Controller>. It is an Open Source MIDI controller for the videogame-like interactive experience [Panoramical](http://panoramic.al/) by [Fernando Ramallo](http://www.byfernando.com/) and [David Kanaga](https://davidkanaga.bandcamp.com/). The controller consists of eighteen rotary potentiometers sending MIDI data via a microcontroller.
 
+##Electronic Parts
 
+- [Teensy 2.0](https://www.pjrc.com/store/teensy.html) — $16.00
+    - You can also use an Arduino as the microcontroller.
+- [Mux](https://www.sparkfun.com/products/9056) — $4.95
+- [Potentiometers](https://www.sparkfun.com/products/9939) (x18) — $17.10
+- [knobs](https://www.sparkfun.com/products/10002) (x18) — $27.00
+- [USB panel-mount cable, B-Female to micro-B male](https://www.adafruit.com/products/937) - $3.95
+- arcade button (TBD)
 
-Materials:
+Additionally: hookup wire, solder, heatshrink tubing, and so on.
 
-- Side Panels: 1/4" Walnut
-- Inner Supports: 1/4" Basswood
-- Front and Back Panels: 1/8" Acrylic
-- Teensy 2.0 - [https://www.pjrc.com/store/teensy.html](https://www.pjrc.com/store/teensy.html)
-- Knobs - [http://tiny.cc/78sydx](http://www.mammothelectronics.com/4SKA-20X13KBK-p/700-2100.htm)
-- Potentiometers - [http://tiny.cc/ratydx](http://www.mammothelectronics.com/RV16AF-10-15R1-B-p/200-100-b.htm)
-- Arcade Button - [http://tiny.cc/xhtydx](https://store.djtechtools.com/products/arcade-buttons)
-- Multiplexer (4051) - [http://tiny.cc/bdtydx](http://www.jaycar.com.au/images_uploaded/CD4051BC.PDF)
+More details about the electronic build is in the [Hardware folder](Hardware/).
+
+##Enclosure
+
+Each laser-cut enclosure file is based on the P2 material size at [Ponoko](http://ponoko.com/).
+
+- 3mm Acrylic front panel
+- 3mm wood side panels and inner supports
+
+For assembly, you will need the following hardware from [McMaster-Carr](http://www.mcmaster.com/):
+
+- [16M3 screws, #91290A120](http://www.mcmaster.com/#91290A120) (x8)
+- [M3 nuts, #98676A100](http://www.mcmaster.com/#98676A100) (x8)
+
+You will also need some wood glue to attach the inner supports.
+
+##Code
+
+Prerequisites:
+
+- [Arduino MIDI library](https://github.com/FortySevenEffects/arduino_midi_library/)
+
+There are two sets of code folders, one for testing the hardware and one actual MIDI use.
+
+- [Hardware_Test](Hardware_Test/Hardware_Test.ino) — This program reads the values of the potentiometers and writes them to the serial port.
+- MidiController — This is the final program that sends MIDI commands over USB.
