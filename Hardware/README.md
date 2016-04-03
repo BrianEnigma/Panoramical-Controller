@@ -16,3 +16,5 @@ The other mux pins are connected in this way:
 - EN — Ground
 - VCC — Teensy's +5V voltage regulator
 - GND — Ground
+
+[TODO: photo of wiring]

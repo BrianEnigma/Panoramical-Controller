@@ -22,10 +22,12 @@ More details about the electronic build is in the [Hardware folder](Hardware/).
 
 ##Enclosure
 
-Each laser-cut enclosure file is based on the P2 material size at [Ponoko](http://ponoko.com/).
+[TODO: enclosure photo]
+
+Each laser-cut enclosure file is based on the 24"x12" walnut sheet @ 3.5mm thickness at [Ponoko](http://ponoko.com/).
 
 - 3mm Acrylic front panel
-- 3mm wood side panels and inner supports
+- 3.5mm wood side panels and inner supports
 
 For assembly, you will need the following hardware from [McMaster-Carr](http://www.mcmaster.com/):
 
@@ -33,6 +35,10 @@ For assembly, you will need the following hardware from [McMaster-Carr](http://w
 - [M3 nuts, #98676A100](http://www.mcmaster.com/#98676A100) (x8)
 
 You will also need some wood glue to attach the inner supports.
+
+The [Enclosure](Enclosure/) folder includes some build photos.
+
+[TODO: build photos]
 
 ##Code
 
