@@ -8,6 +8,8 @@ This project is a fork of a project by the same name at <https://github.com/bren
 
 ##Electronic Parts
 
+More details about the electronic build are in the [Hardware folder](Hardware/).
+
 - [Teensy 2.0](https://www.pjrc.com/store/teensy.html) — $16.00
     - You can also use an Arduino as the microcontroller.
 - [Mux](https://www.sparkfun.com/products/9056) — $4.95
@@ -18,13 +20,15 @@ This project is a fork of a project by the same name at <https://github.com/bren
 
 Additionally: hookup wire, solder, heatshrink tubing, and so on.
 
-More details about the electronic build is in the [Hardware folder](Hardware/).
-
 ##Enclosure
 
 [TODO: enclosure photo]
 
-Each laser-cut enclosure file is based on the 24"x12" walnut sheet @ 3.5mm thickness at [Ponoko](http://ponoko.com/).
+The [Enclosure](Enclosure/) folder includes the files required to manufacture the enclosure as well as some build photos.
+
+[TODO: build photos]
+
+Each laser-cut enclosure file is based on the [24"x12" walnut sheet](http://www.ponoko.com/make-and-sell/show-material/598-premium-veneer-mdf-walnut) @ 3.5mm thickness at [Ponoko](http://ponoko.com/).
 
 - 3mm Acrylic front panel
 - 3.5mm wood side panels and inner supports
@@ -36,10 +40,6 @@ For assembly, you will need the following hardware from [McMaster-Carr](http://w
 
 You will also need some wood glue to attach the inner supports.
 
-The [Enclosure](Enclosure/) folder includes some build photos.
-
-[TODO: build photos]
-
 ##Code
 
 Prerequisites:
@@ -50,3 +50,8 @@ There are two sets of code folders, one for testing the hardware and one actual 
 
 - [Hardware_Test](Hardware_Test/Hardware_Test.ino) — This program reads the values of the potentiometers and writes them to the serial port.
 - MidiController — This is the final program that sends MIDI commands over USB.
+
+##License
+
+TODO: figure out license of the original project, echo that license here.
+
