@@ -1,3 +1,5 @@
+#include <Bounce.h>
+
 /// Hardware Test
 ///
 /// This application is used to test the wiring of the knob board. When run, it will send 
@@ -33,6 +35,8 @@ const int MUX_PHYSICAL_MAP[] {
     A1, -1, -1, -1, -1, -1, -1, -1, -1,
     A2, -1, -1, -1, -1, -1, -1, -1, -1
 };
+
+Bounce arcadeButton = Bounce(PUSHBUTTON_PIN, 5); 
 
 void setup() 
 {
@@ -101,7 +105,8 @@ unsigned char getKnobValue(int knobNumber)
 
 unsigned char getArcadeButtonValue()
 {
-    return digitalRead(PUSHBUTTON_PIN) ? 0x00 : 0xFF;
+    arcadeButton.update();
+    return arcadeButton.read() ? 0x00 : 0xFF;
 }
 
 unsigned char ledValue = 1;
