@@ -13,6 +13,9 @@ const int MUX_COMMON = A0;
 /// For debugging, this pin has an LED. This is 11 on the Teensy, 13 on an Arduino.
 const int LED_PIN = 11;
 
+/// Which pin has the arcade pushbutton attached to it
+const int PUSHBUTTON_PIN = 10;
+
 /// This maps which physical knob location on the panel is mapped
 /// to which mux address lines. The -1 values are knobs that are
 /// not wired to the mux because it can only address 16 of the 18
@@ -33,7 +36,9 @@ const int MUX_PHYSICAL_MAP[] {
 
 void setup() 
 {
-    Serial.begin(9600); 
+    Serial.begin(9600);
+    // Set up arcade pushbutton's internal pullup resistor
+    pinMode(PUSHBUTTON_PIN,INPUT_PULLUP);
     // Set up the muxer address lines
     for (int i = 0; i < 4; i++)
     {
@@ -94,6 +99,11 @@ unsigned char getKnobValue(int knobNumber)
     return 0;
 }
 
+unsigned char getArcadeButtonValue()
+{
+    return digitalRead(PUSHBUTTON_PIN) ? 0x00 : 0xFF;
+}
+
 unsigned char ledValue = 1;
 void toggleLED()
 {
@@ -136,6 +146,8 @@ void testPhysicalKnobs()
             Serial.println("");
     }
     Serial.println("");
+    Serial.print("arcade button: 0x");
+    Serial.println(getArcadeButtonValue(), 16);
     Serial.println("");
     delay(1000);
 }
