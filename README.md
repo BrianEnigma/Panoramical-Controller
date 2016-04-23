@@ -45,6 +45,7 @@ You will also need some wood glue to attach the inner supports.
 Prerequisites:
 
 - [Arduino MIDI library](https://github.com/FortySevenEffects/arduino_midi_library/)
+- Arduino Debounce library (Bounce.h)
 
 There are two sets of code folders, one for testing the hardware and one actual MIDI use.
 
