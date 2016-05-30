@@ -1,4 +1,12 @@
+#include <MIDI.h>
+#include <midi_Defs.h>
+#include <midi_Message.h>
+#include <midi_Namespace.h>
+#include <midi_Settings.h>
+
 #include <Bounce.h>
+
+MIDI_CREATE_DEFAULT_INSTANCE();
 
 /// Hardware Test
 ///
@@ -36,11 +44,16 @@ const int MUX_PHYSICAL_MAP[] {
     A2, -1, -1, -1, -1, -1, -1, -1, -1
 };
 
+int cachedMidiControlValues[18];
+int cachedPushbuttonValue;
+
 Bounce arcadeButton = Bounce(PUSHBUTTON_PIN, 5); 
 
 void setup() 
 {
-    Serial.begin(9600);
+    MIDI.begin();
+    Serial.begin(31250);
+    //Serial.begin(9600);
     // Set up arcade pushbutton's internal pullup resistor
     pinMode(PUSHBUTTON_PIN,INPUT_PULLUP);
     // Set up the muxer address lines
@@ -51,6 +64,9 @@ void setup()
     }
     // Debug LED
     pinMode(LED_PIN, OUTPUT);
+    for (unsigned int i = 0; i < sizeof(cachedMidiControlValues) / sizeof(int); i++)
+        cachedMidiControlValues[i] = -1;
+    cachedPushbuttonValue = 0;
 }
 
 /// Get scaled analog pin value
@@ -117,50 +133,46 @@ void toggleLED()
     ledValue ^= 0x01;
 }
 
-void testLogicalKnobs()
+void sendMidiUpdate(int channel, unsigned char value, unsigned char force)
 {
-    toggleLED();
-    for (int muxAddress = 0; muxAddress < 16; muxAddress++)
+    int diff = (int) ((int) value) - ((int) cachedMidiControlValues[channel]);
+    if (abs(diff) >= 2 || force)
     {
-        unsigned char value = getLogicalMuxedPinValue(muxAddress);
-        Serial.print(muxAddress);
-        Serial.print(":0x");
-        if (value <= 0x0F) // zero-pad
-            Serial.print("0");
-        Serial.print(value, 16);
-        Serial.print(" ");
+        cachedMidiControlValues[channel] = value;
+        MIDI.sendControlChange(channel, value / 2, 1);
     }
-    Serial.println("");
-    delay(1000);
 }
 
-void testPhysicalKnobs()
+void sendMidiPushbuttonUpdate(unsigned char value)
 {
-    toggleLED();
-    for (int knob = 1; knob <= 18; knob++)
+    if (cachedPushbuttonValue != value)
     {
-        unsigned char value = getKnobValue(knob);
-        if (knob <= 9) // zero-pad
-            Serial.print("0");
-        Serial.print(knob);
-        Serial.print(":0x");
-        if (value <= 0x0F) // zero-pad
-            Serial.print("0");
-        Serial.print(value, 16);
-        Serial.print(" ");
-        if (9 == knob)
-            Serial.println("");
+        cachedPushbuttonValue = value;
+        if (value != 0)
+        {
+            MIDI.sendNoteOn(60, 127, 8);
+            delay(5);
+            MIDI.sendNoteOff(60, 0, 8);
+        }
     }
-    Serial.println("");
-    Serial.print("arcade button: 0x");
-    Serial.println(getArcadeButtonValue(), 16);
-    Serial.println("");
-    delay(1000);
 }
+
+unsigned char firstLoop = 0;
 
 void loop() 
 {
-    //testLogicalKnobs();
-    testPhysicalKnobs();
+    if (!firstLoop)
+    {
+        for (int knob = 1; knob <= 18; knob++)
+        {
+            sendMidiUpdate(knob - 1, getKnobValue(knob), true);
+        }
+        firstLoop = 1;
+    }
+    for (int knob = 1; knob <= 18; knob++)
+    {
+        sendMidiUpdate(knob - 1, getKnobValue(knob), false);
+    }
+    sendMidiPushbuttonUpdate(getArcadeButtonValue());
 }
 
