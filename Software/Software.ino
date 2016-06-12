@@ -151,28 +151,38 @@ void sendMidiPushbuttonUpdate(unsigned char value)
         if (value != 0)
         {
             MIDI.sendNoteOn(60, 127, 8);
-            delay(5);
+        } else {
             MIDI.sendNoteOff(60, 0, 8);
         }
     }
 }
 
-unsigned char firstLoop = 0;
+unsigned char firstLoop = 1;
+unsigned long timestamp = 0;
 
 void loop() 
 {
-    if (!firstLoop)
+    // Force update every 3 seconds.
+    if (millis() - timestamp >= 3000)
+    {
+        timestamp = millis();
+        firstLoop = 1;
+    }
+    // Force update on first loop.
+    if (firstLoop)
     {
         for (int knob = 1; knob <= 18; knob++)
         {
             sendMidiUpdate(knob - 1, getKnobValue(knob), true);
         }
-        firstLoop = 1;
+        firstLoop = 0;
     }
+    // Update upon knob value change.
     for (int knob = 1; knob <= 18; knob++)
     {
         sendMidiUpdate(knob - 1, getKnobValue(knob), false);
     }
+    // Update for button change.
     sendMidiPushbuttonUpdate(getArcadeButtonValue());
 }
 
