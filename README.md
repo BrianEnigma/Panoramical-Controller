@@ -1,10 +1,12 @@
 #Panoramical MIDI Controller
 
-**NOTE: At this time, this project is still a work-in-progress.**
-
 ##Overview
 
 This project is a fork of a project by the same name at <https://github.com/brendan-byrne/Panoramical-Controller>. It is an Open Source MIDI controller for the videogame-like interactive experience [Panoramical](http://panoramic.al/) by [Fernando Ramallo](http://www.byfernando.com/) and [David Kanaga](https://davidkanaga.bandcamp.com/). The controller consists of eighteen rotary potentiometers sending MIDI data via a microcontroller.
+
+The project files themselves live here on Github: <https://github.com/BrianEnigma/Panoramical-Controller>
+
+A blog post detailing the build is on my personal website: < https://netninja.com/2016/06/12/building-an-unus…-game-controller/>
 
 ##Electronic Parts
 
