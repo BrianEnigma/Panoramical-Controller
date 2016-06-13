@@ -6,7 +6,7 @@ This project is a fork of a project by the same name at <https://github.com/bren
 
 The project files themselves live here on Github: <https://github.com/BrianEnigma/Panoramical-Controller>
 
-A blog post detailing the build is on my personal website: <https://netninja.com/2016/06/12/building-an-unus…-game-controller/>
+A blog post detailing the build is on my personal website: <https://netninja.com/2016/06/12/building-an-unusual-video-game-controller/>
 
 ##Electronic Parts
 
