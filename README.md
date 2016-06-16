@@ -25,11 +25,13 @@ Additionally: hookup wire, solder, heatshrink tubing, and so on.
 
 ##Enclosure
 
-[TODO: enclosure photo]
+![Enclosure](https://raw.githubusercontent.com/BrianEnigma/Panoramical-Controller/master/Enclosure/enclosure01.jpg)
 
 The [Enclosure](Enclosure/) folder includes the files required to manufacture the enclosure as well as some build photos.
 
-[TODO: build photos]
+![Panel](https://raw.githubusercontent.com/BrianEnigma/Panoramical-Controller/master/Enclosure/enclosure02.jpg)
+
+![Wiring](https://raw.githubusercontent.com/BrianEnigma/Panoramical-Controller/master/Enclosure/enclosure03.jpg)
 
 Each laser-cut enclosure file is based on the [24"x12" walnut sheet](http://www.ponoko.com/make-and-sell/show-material/598-premium-veneer-mdf-walnut) @ 3.5mm thickness at [Ponoko](http://ponoko.com/).
 
@@ -42,6 +44,8 @@ For assembly, you will need the following hardware from [McMaster-Carr](http://w
 - [M3 nuts, #98676A100](http://www.mcmaster.com/#98676A100) (x8)
 
 You will also need some wood glue to attach the inner supports.
+
+A more detailed narrative of the build can be found at <https://netninja.com/2016/06/12/building-an-unusual-video-game-controller/>
 
 ##Code
 
